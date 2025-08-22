@@ -143,6 +143,151 @@
 
   <!-- Citizen Dashboard -->
   <div id="citizen-dashboard" class="hidden">
+    <header style="background:#f39c12;color:white;text-align:center;padding:20px;"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoodShare – Unified</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .hidden { display: none !important; }
+    .btn-reset { background:#dc2626; color:white; padding:6px 12px; border:none; border-radius:6px; cursor:pointer; margin:10px; }
+    .btn-reset:hover { opacity:0.9; }
+    .login-card { max-width:400px; margin:3rem auto; background:white; padding:2rem; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .login-card input { width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px; }
+    .login-card button { width:48%; background:#2563eb; color:white; padding:10px; margin-top:12px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
+    .login-card button:hover { opacity:0.9; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Role Selection -->
+  <div id="role-selection" class="min-h-screen flex flex-col">
+    <header class="bg-white shadow-md flex justify-between items-center px-6 py-4">
+      <h1 class="text-2xl font-bold text-blue-700">🍽 FoodShare</h1>
+      <button id="btn-reset-db" class="btn-reset">Reset Database</button>
+    </header>
+
+    <section class="relative bg-white">
+      <div class="max-w-7xl mx-auto px-6 py-12 text-center">
+        <h2 class="text-4xl font-extrabold mb-4">Together Against Food Waste</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Restaurants, NGOs, and Citizens united to reduce food waste and fight hunger.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
+      <div class="bg-white rounded-xl shadow-md p-6 text-center">
+        <h3 class="text-xl font-semibold mb-2">Restaurant</h3>
+        <button id="btn-restaurant" class="bg-yellow-500 text-white px-6 py-2 rounded-lg font-bold">I'm a Restaurant</button>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 text-center">
+        <h3 class="text-xl font-semibold mb-2">NGO / Food Bank</h3>
+        <button id="btn-charity" class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold">I'm an NGO</button>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 text-center">
+        <h3 class="text-xl font-semibold mb-2">Citizen</h3>
+        <button id="btn-citizen" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold">I'm a Citizen</button>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 text-center">
+        <h3 class="text-xl font-semibold mb-2">Driver</h3>
+        <button id="btn-driver" class="bg-orange-400 text-white px-6 py-2 rounded-lg font-bold">I'm a Driver</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Login Forms -->
+  <div id="restaurant-login" class="hidden">
+    <div class="login-card">
+      <h2 class="text-2xl font-bold mb-4 text-center">Restaurant Login</h2>
+      <input id="rest-name" type="text" placeholder="Restaurant Name" required>
+      <input id="rest-address" type="text" placeholder="Address" required>
+      <input id="rest-contact" type="text" placeholder="Contact No." required>
+      <button id="rest-login-btn" style="width:100%">Continue</button>
+    </div>
+  </div>
+
+  <div id="charity-login" class="hidden">
+    <div class="login-card">
+      <h2 class="text-2xl font-bold mb-4 text-center">NGO Login</h2>
+      <input id="ngo-name" type="text" placeholder="NGO Name" required>
+      <input id="ngo-address" type="text" placeholder="Address" required>
+      <input id="ngo-contact" type="text" placeholder="Contact No." required>
+      <button id="ngo-login-btn" style="width:100%">Continue</button>
+    </div>
+  </div>
+
+  <div id="citizen-login" class="hidden">
+    <div class="login-card">
+      <h2 class="text-2xl font-bold mb-4 text-center">Citizen Login</h2>
+      <input id="citizen-name" type="text" placeholder="Your Name" required>
+      <input id="citizen-address" type="text" placeholder="Address" required>
+      <input id="citizen-contact" type="text" placeholder="Contact No." required>
+      <div class="flex justify-between">
+        <button id="citizen-donator-btn">Donator</button>
+        <button id="citizen-suggester-btn">Suggester</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Driver Login -->
+  <div id="driver-login" class="hidden">
+    <div class="login-box" style="background:white;padding:30px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:320px;text-align:center;margin:40px auto;">
+      <h2 style="margin-bottom:20px;color:#444;">Driver Login</h2>
+      <form id="driver-login-form">
+        <input id="driver-name" type="text" placeholder="Full Name" required style="width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:10px;font-size:14px;">
+        <input id="driver-phone" type="tel" placeholder="Phone Number" required style="width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:10px;font-size:14px;">
+        <button type="submit" style="width:100%;padding:12px;background:#ff9966;border:none;border-radius:10px;color:white;font-size:16px;cursor:pointer;transition:0.3s;">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Restaurant Dashboard -->
+  <div id="restaurant-dashboard" class="hidden">
+    <header style="background:#e17055;color:white;text-align:center;padding:20px;">
+      <h1>🍴 Restaurant Dashboard</h1>
+      <p id="restaurant-user-info" class="mt-2"></p>
+    </header>
+    <div class="container p-6">
+      <div class="bg-white p-6 rounded-xl shadow-md mb-6">
+        <h2 class="text-lg font-semibold mb-3">Add Surplus Food</h2>
+        <input id="food-item" type="text" placeholder="Food Item" class="border rounded p-2 w-full mb-3">
+        <input id="food-qty" type="number" placeholder="Quantity (kg)" step="0.5" min="0.5" class="border rounded p-2 w-full mb-3">
+        <button id="add-food" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg w-full">➕ Add Food</button>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h2 class="text-lg font-semibold mb-3">Food Donations History</h2>
+        <ul id="restaurant-history"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charity Dashboard -->
+  <div id="charity-dashboard" class="hidden">
+    <header style="background:#2980b9;color:white;text-align:center;padding:20px;">
+      <h1>🤝 Charity / NGO Dashboard</h1>
+      <p id="ngo-user-info" class="mt-2"></p>
+    </header>
+    <div class="container p-6">
+      <div class="bg-white p-6 rounded-xl shadow-md mb-6">
+        <h2 class="text-lg font-semibold mb-3">Available Food Listings</h2>
+        <ul id="ngo-listings"></ul>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md mb-6">
+        <h2 class="text-lg font-semibold mb-3">My Deliveries</h2>
+        <ul id="ngo-claimed"></ul>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <h2 class="text-lg font-semibold mb-3">Citizen Suggestions</h2>
+        <ul id="ngo-suggestions"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Citizen Dashboard -->
+  <div id="citizen-dashboard" class="hidden">
     <header style="background:#f39c12;color:white;text-align:center;padding:20px;">
       <h1>🧑 Citizen Dashboard</h1>
       <p id="citizen-user-info" class="mt-2"></p>
@@ -445,3 +590,305 @@
 </script>
 </body>
 </html>
+      <h1>🧑 Citizen Dashboard</h1>
+      <p id="citizen-user-info" class="mt-2"></p>
+    </header>
+    <div class="container p-6">
+      <div id="citizen-donator-section" class="hidden">
+        <div class="bg-white p-6 rounded-xl shadow-md mb-6">
+          <h2 class="text-lg font-semibold mb-3">Add Food to Donate</h2>
+          <input id="citizen-food-item" type="text" placeholder="Food Item" class="border rounded p-2 w-full mb-3">
+          <input id="citizen-food-qty" type="number" placeholder="Quantity (kg)" step="0.5" min="0.5" class="border rounded p-2 w-full mb-3">
+          <button id="citizen-add-food" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-full">➕ Add Food</button>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <h2 class="text-lg font-semibold mb-3">My Donations</h2>
+          <ul id="citizen-history"></ul>
+        </div>
+      </div>
+      <div id="citizen-suggester-section" class="hidden">
+        <div class="bg-white p-6 rounded-xl shadow-md mb-6">
+          <h2 class="text-lg font-semibold mb-3">Suggest an NGO Location</h2>
+          <input id="suggest-ngo-name" type="text" placeholder="NGO Name" class="border rounded p-2 w-full mb-3">
+          <input id="suggest-ngo-location" type="text" placeholder="Location" class="border rounded p-2 w-full mb-3">
+          <button id="submit-suggestion" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg w-full">📍 Submit Suggestion</button>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <h2 class="text-lg font-semibold mb-3">My Suggestions</h2>
+          <ul id="citizen-suggestions"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Driver Dashboard -->
+  <div id="driver-dashboard" class="hidden">
+    <header style="background:#ff9966;color:white;padding:15px;text-align:center;font-size:22px;font-weight:bold;">
+      Driver Dashboard
+    </header>
+    <div class="container" style="padding:20px;">
+      <div class="card" style="background:white;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-bottom:20px;padding:20px;">
+        <h3 style="margin:0;color:#444;">Pickup from: Pizza Palace</h3>
+        <p style="margin:8px 0;color:#666;"><strong>Food:</strong> 10 boxes of pizza</p>
+        <p style="margin:8px 0;color:#666;"><strong>Deliver to:</strong> Helping Hands Charity, Main Street</p>
+        <button class="btn accept" onclick="acceptDelivery(this)" style="padding:10px 15px;border:none;border-radius:8px;margin-right:10px;cursor:pointer;font-size:14px;background:#66cc99;color:white;">Accept</button>
+        <button class="btn delivered" onclick="markDelivered(this)" disabled style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;font-size:14px;background:#6699cc;color:white;">Mark Delivered</button>
+      </div>
+      <div class="card" style="background:white;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-bottom:20px;padding:20px;">
+        <h3 style="margin:0;color:#444;">Pickup from: Green Garden Restaurant</h3>
+        <p style="margin:8px 0;color:#666;"><strong>Food:</strong> 15 salad bowls</p>
+        <p style="margin:8px 0;color:#666;"><strong>Deliver to:</strong> City Food Bank, Market Road</p>
+        <button class="btn accept" onclick="acceptDelivery(this)" style="padding:10px 15px;border:none;border-radius:8px;margin-right:10px;cursor:pointer;font-size:14px;background:#66cc99;color:white;">Accept</button>
+        <button class="btn delivered" onclick="markDelivered(this)" disabled style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;font-size:14px;background:#6699cc;color:white;">Mark Delivered</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  let foodListings = JSON.parse(localStorage.getItem("foodListings") || "[]");
+  let suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
+  let currentUser = {};
+
+  function isValidQuantity(qty) {
+    return /^\\d+(\\.0|\\.5)?$/.test(qty);
+  }
+
+  function renderRestaurantHistory() {
+    const ul = document.getElementById("restaurant-history");
+    ul.innerHTML = "";
+    foodListings.forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = `${f.qty} kg ${f.item} → ${f.status === "available" ? "Available" : "Claimed by NGO"}`;
+      ul.appendChild(li);
+    });
+  }
+
+  function renderCitizenHistory() {
+    const ul = document.getElementById("citizen-history");
+    ul.innerHTML = "";
+    foodListings.filter(f => f.owner === currentUser.name).forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = `${f.qty} kg ${f.item} → ${f.status}`;
+      ul.appendChild(li);
+    });
+  }
+
+  function renderNGOListings() {
+    const ul = document.getElementById("ngo-listings");
+    ul.innerHTML = "";
+    foodListings.filter(f => f.status === "available").forEach(f => {
+      const li = document.createElement("li");
+      li.className = "flex justify-between items-center border-b py-2";
+      li.innerHTML = `<span>${f.qty} kg ${f.item} (by ${f.owner})</span>`;
+      const btn = document.createElement("button");
+      btn.textContent = "✅ Claim";
+      btn.className = "bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1 rounded";
+      btn.onclick = () => {
+        f.status = "claimed";
+        localStorage.setItem("foodListings", JSON.stringify(foodListings));
+        renderNGOListings();
+        renderNGOClaimed();
+        renderRestaurantHistory();
+        renderCitizenHistory();
+      };
+      li.appendChild(btn);
+      ul.appendChild(li);
+    });
+  }
+
+  function renderNGOClaimed() {
+    const ul = document.getElementById("ngo-claimed");
+    ul.innerHTML = "";
+    foodListings.filter(f => f.status === "claimed").forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = `${f.qty} kg ${f.item} (Claimed)`;
+      ul.appendChild(li);
+    });
+  }
+
+  function renderSuggestions() {
+    const ulCitizen = document.getElementById("citizen-suggestions");
+    const ulNGO = document.getElementById("ngo-suggestions");
+    ulCitizen.innerHTML = "";
+    ulNGO.innerHTML = "";
+    suggestions.forEach(s => {
+      const li1 = document.createElement("li");
+      li1.textContent = `${s.name} - ${s.location}`;
+      ulNGO.appendChild(li1);
+      if (s.owner === currentUser.name) {
+        const li2 = document.createElement("li");
+        li2.textContent = `${s.name} - ${s.location}`;
+        ulCitizen.appendChild(li2);
+      }
+    });
+  }
+
+  document.getElementById("add-food")?.addEventListener("click", () => {
+    const item = document.getElementById("food-item").value.trim();
+    const qty = document.getElementById("food-qty").value.trim();
+    if (!item || !isValidQuantity(qty)) return alert("Enter valid quantity in 0.5 kg steps");
+    foodListings.push({ item, qty, status: "available", owner: currentUser.name });
+    localStorage.setItem("foodListings", JSON.stringify(foodListings));
+    renderRestaurantHistory();
+    document.getElementById("food-item").value = "";
+    document.getElementById("food-qty").value = "";
+  });
+
+  document.getElementById("citizen-add-food")?.addEventListener("click", () => {
+    const item = document.getElementById("citizen-food-item").value.trim();
+    const qty = document.getElementById("citizen-food-qty").value.trim();
+    if (!item || !isValidQuantity(qty)) return alert("Enter valid quantity in 0.5 kg steps");
+    foodListings.push({ item, qty, status: "available", owner: currentUser.name });
+    localStorage.setItem("foodListings", JSON.stringify(foodListings));
+    renderCitizenHistory();
+    document.getElementById("citizen-food-item").value = "";
+    document.getElementById("citizen-food-qty").value = "";
+  });
+
+  document.getElementById("submit-suggestion")?.addEventListener("click", () => {
+    const name = document.getElementById("suggest-ngo-name").value.trim();
+    const location = document.getElementById("suggest-ngo-location").value.trim();
+    if (!name || !location) return;
+    suggestions.push({ name, location, owner: currentUser.name });
+    localStorage.setItem("suggestions", JSON.stringify(suggestions));
+    renderSuggestions();
+    document.getElementById("suggest-ngo-name").value = "";
+    document.getElementById("suggest-ngo-location").value = "";
+  });
+
+  document.getElementById("btn-reset-db").addEventListener("click", () => {
+    if (confirm("Reset all data?")) {
+      localStorage.removeItem("foodListings");
+      localStorage.removeItem("suggestions");
+      foodListings = [];
+      suggestions = [];
+      renderRestaurantHistory();
+      renderNGOListings();
+      renderNGOClaimed();
+      renderCitizenHistory();
+      renderSuggestions();
+    }
+  });
+
+  function showPage(page) {
+    document.querySelectorAll("body > div").forEach(d => d.classList.add("hidden"));
+    document.getElementById(page).classList.remove("hidden");
+
+    if (page === "restaurant-dashboard") renderRestaurantHistory();
+    if (page === "charity-dashboard") { renderNGOListings(); renderNGOClaimed(); renderSuggestions(); }
+    if (page === "citizen-dashboard") { renderCitizenHistory(); renderSuggestions(); }
+    // No extra logic needed for driver pages
+  }
+
+  // Role selection → login
+  document.getElementById("btn-restaurant").addEventListener("click", () => {
+    history.pushState({ page: "restaurant-login" }, "", "#restaurant-login");
+    showPage("restaurant-login");
+  });
+  document.getElementById("btn-charity").addEventListener("click", () => {
+    history.pushState({ page: "charity-login" }, "", "#charity-login");
+    showPage("charity-login");
+  });
+  document.getElementById("btn-citizen").addEventListener("click", () => {
+    history.pushState({ page: "citizen-login" }, "", "#citizen-login");
+    showPage("citizen-login");
+  });
+
+  // Login handling
+  document.getElementById("rest-login-btn").addEventListener("click", () => {
+    currentUser = {
+      name: document.getElementById("rest-name").value,
+      address: document.getElementById("rest-address").value,
+      contact: document.getElementById("rest-contact").value,
+      type: "restaurant"
+    };
+    document.getElementById("restaurant-user-info").textContent = `${currentUser.name}, ${currentUser.address}, ${currentUser.contact}`;
+    history.pushState({ page: "restaurant-dashboard" }, "", "#restaurant-dashboard");
+    showPage("restaurant-dashboard");
+  });
+
+  document.getElementById("ngo-login-btn").addEventListener("click", () => {
+    currentUser = {
+      name: document.getElementById("ngo-name").value,
+      address: document.getElementById("ngo-address").value,
+      contact: document.getElementById("ngo-contact").value,
+      type: "charity"
+    };
+    document.getElementById("ngo-user-info").textContent = `${currentUser.name}, ${currentUser.address}, ${currentUser.contact}`;
+    history.pushState({ page: "charity-dashboard" }, "", "#charity-dashboard");
+    showPage("charity-dashboard");
+  });
+
+  document.getElementById("citizen-donator-btn").addEventListener("click", () => {
+    currentUser = {
+      name: document.getElementById("citizen-name").value,
+      address: document.getElementById("citizen-address").value,
+      contact: document.getElementById("citizen-contact").value,
+      type: "citizen-donator"
+    };
+    document.getElementById("citizen-user-info").textContent = `${currentUser.name}, ${currentUser.address}, ${currentUser.contact}`;
+    document.getElementById("citizen-donator-section").classList.remove("hidden");
+    document.getElementById("citizen-suggester-section").classList.add("hidden");
+    history.pushState({ page: "citizen-dashboard" }, "", "#citizen-dashboard");
+    showPage("citizen-dashboard");
+  });
+
+  document.getElementById("citizen-suggester-btn").addEventListener("click", () => {
+    currentUser = {
+      name: document.getElementById("citizen-name").value,
+      address: document.getElementById("citizen-address").value,
+      contact: document.getElementById("citizen-contact").value,
+      type: "citizen-suggester"
+    };
+    document.getElementById("citizen-user-info").textContent = `${currentUser.name}, ${currentUser.address}, ${currentUser.contact}`;
+    document.getElementById("citizen-suggester-section").classList.remove("hidden");
+    document.getElementById("citizen-donator-section").classList.add("hidden");
+    history.pushState({ page: "citizen-dashboard" }, "", "#citizen-dashboard");
+    showPage("citizen-dashboard");
+  });
+
+  // Driver login logic
+  document.getElementById("btn-driver").addEventListener("click", () => {
+    history.pushState({ page: "driver-login" }, "", "#driver-login");
+    showPage("driver-login");
+  });
+
+  document.getElementById("driver-login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    currentUser = {
+      name: document.getElementById("driver-name").value,
+      phone: document.getElementById("driver-phone").value,
+      type: "driver"
+    };
+    history.pushState({ page: "driver-dashboard" }, "", "#driver-dashboard");
+    showPage("driver-dashboard");
+  });
+
+  // Driver dashboard button logic
+  function acceptDelivery(button) {
+    button.disabled = true;
+    button.innerText = "Accepted";
+    let deliveredBtn = button.nextElementSibling;
+    deliveredBtn.disabled = false;
+  }
+
+  function markDelivered(button) {
+    button.disabled = true;
+    button.innerText = "Delivered ✅";
+    button.previousElementSibling.innerText = "Accepted";
+  }
+
+  window.addEventListener("popstate", (event) => {
+    const page = event.state?.page || "role-selection";
+    showPage(page);
+  });
+
+  window.addEventListener("load", () => {
+    const hash = window.location.hash.replace("#", "") || "role-selection";
+    showPage(hash);
+    history.replaceState({ page: hash }, "", "#" + hash);
+  });
+</script>
+</body>
+</html>
+

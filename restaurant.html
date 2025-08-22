@@ -33,18 +33,22 @@
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-8">
+    <section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
       <div class="bg-white rounded-xl shadow-md p-6 text-center">
         <h3 class="text-xl font-semibold mb-2">Restaurant</h3>
         <button id="btn-restaurant" class="bg-yellow-500 text-white px-6 py-2 rounded-lg font-bold">I'm a Restaurant</button>
       </div>
       <div class="bg-white rounded-xl shadow-md p-6 text-center">
-        <h3 class="text-xl font-semibold mb-2">Charity / NGO</h3>
+        <h3 class="text-xl font-semibold mb-2">NGO / Food Bank</h3>
         <button id="btn-charity" class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold">I'm an NGO</button>
       </div>
       <div class="bg-white rounded-xl shadow-md p-6 text-center">
         <h3 class="text-xl font-semibold mb-2">Citizen</h3>
         <button id="btn-citizen" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold">I'm a Citizen</button>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 text-center">
+        <h3 class="text-xl font-semibold mb-2">Driver</h3>
+        <button id="btn-driver" class="bg-orange-400 text-white px-6 py-2 rounded-lg font-bold">I'm a Driver</button>
       </div>
     </section>
   </div>
@@ -80,6 +84,18 @@
         <button id="citizen-donator-btn">Donator</button>
         <button id="citizen-suggester-btn">Suggester</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Driver Login -->
+  <div id="driver-login" class="hidden">
+    <div class="login-box" style="background:white;padding:30px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:320px;text-align:center;margin:40px auto;">
+      <h2 style="margin-bottom:20px;color:#444;">Driver Login</h2>
+      <form id="driver-login-form">
+        <input id="driver-name" type="text" placeholder="Full Name" required style="width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:10px;font-size:14px;">
+        <input id="driver-phone" type="tel" placeholder="Phone Number" required style="width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:10px;font-size:14px;">
+        <button type="submit" style="width:100%;padding:12px;background:#ff9966;border:none;border-radius:10px;color:white;font-size:16px;cursor:pointer;transition:0.3s;">Login</button>
+      </form>
     </div>
   </div>
 
@@ -155,6 +171,29 @@
           <h2 class="text-lg font-semibold mb-3">My Suggestions</h2>
           <ul id="citizen-suggestions"></ul>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Driver Dashboard -->
+  <div id="driver-dashboard" class="hidden">
+    <header style="background:#ff9966;color:white;padding:15px;text-align:center;font-size:22px;font-weight:bold;">
+      Driver Dashboard
+    </header>
+    <div class="container" style="padding:20px;">
+      <div class="card" style="background:white;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-bottom:20px;padding:20px;">
+        <h3 style="margin:0;color:#444;">Pickup from: Pizza Palace</h3>
+        <p style="margin:8px 0;color:#666;"><strong>Food:</strong> 10 boxes of pizza</p>
+        <p style="margin:8px 0;color:#666;"><strong>Deliver to:</strong> Helping Hands Charity, Main Street</p>
+        <button class="btn accept" onclick="acceptDelivery(this)" style="padding:10px 15px;border:none;border-radius:8px;margin-right:10px;cursor:pointer;font-size:14px;background:#66cc99;color:white;">Accept</button>
+        <button class="btn delivered" onclick="markDelivered(this)" disabled style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;font-size:14px;background:#6699cc;color:white;">Mark Delivered</button>
+      </div>
+      <div class="card" style="background:white;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-bottom:20px;padding:20px;">
+        <h3 style="margin:0;color:#444;">Pickup from: Green Garden Restaurant</h3>
+        <p style="margin:8px 0;color:#666;"><strong>Food:</strong> 15 salad bowls</p>
+        <p style="margin:8px 0;color:#666;"><strong>Deliver to:</strong> City Food Bank, Market Road</p>
+        <button class="btn accept" onclick="acceptDelivery(this)" style="padding:10px 15px;border:none;border-radius:8px;margin-right:10px;cursor:pointer;font-size:14px;background:#66cc99;color:white;">Accept</button>
+        <button class="btn delivered" onclick="markDelivered(this)" disabled style="padding:10px 15px;border:none;border-radius:8px;cursor:pointer;font-size:14px;background:#6699cc;color:white;">Mark Delivered</button>
       </div>
     </div>
   </div>
@@ -292,6 +331,7 @@
     if (page === "restaurant-dashboard") renderRestaurantHistory();
     if (page === "charity-dashboard") { renderNGOListings(); renderNGOClaimed(); renderSuggestions(); }
     if (page === "citizen-dashboard") { renderCitizenHistory(); renderSuggestions(); }
+    // No extra logic needed for driver pages
   }
 
   // Role selection → login
@@ -360,6 +400,37 @@
     history.pushState({ page: "citizen-dashboard" }, "", "#citizen-dashboard");
     showPage("citizen-dashboard");
   });
+
+  // Driver login logic
+  document.getElementById("btn-driver").addEventListener("click", () => {
+    history.pushState({ page: "driver-login" }, "", "#driver-login");
+    showPage("driver-login");
+  });
+
+  document.getElementById("driver-login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    currentUser = {
+      name: document.getElementById("driver-name").value,
+      phone: document.getElementById("driver-phone").value,
+      type: "driver"
+    };
+    history.pushState({ page: "driver-dashboard" }, "", "#driver-dashboard");
+    showPage("driver-dashboard");
+  });
+
+  // Driver dashboard button logic
+  function acceptDelivery(button) {
+    button.disabled = true;
+    button.innerText = "Accepted";
+    let deliveredBtn = button.nextElementSibling;
+    deliveredBtn.disabled = false;
+  }
+
+  function markDelivered(button) {
+    button.disabled = true;
+    button.innerText = "Delivered ✅";
+    button.previousElementSibling.innerText = "Accepted";
+  }
 
   window.addEventListener("popstate", (event) => {
     const page = event.state?.page || "role-selection";
